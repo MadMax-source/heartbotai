@@ -1,0 +1,26 @@
+
+1.  get user data to db 
+2. fetch all new pumpfun tokens 
+3.  can set filters based on 
+Market Cap (min, max)
+
+Liquidity (min, max)
+
+Time created (min, max in minutes)
+
+Developer holding % (min, max)
+
+Top holder % (min, max)
+
+Bundle % (min, max)
+
+Insiders % (min, max)
+
+Total Holders (min, max)
+
+5-min Volume (min, max)
+
+4. return this tokens. 
+5. user clicks on token to view their full details. 
+6 monitor. 
+7.  set the alert time about the token

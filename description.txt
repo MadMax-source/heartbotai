@@ -1,0 +1,153 @@
+Job Lawal, [5/17/2025 12:11 PM]
+The project details
+
+Tech🧑‍💻🐾, [5/17/2025 12:11 PM]
+HeartBot AI - Filtering System (Phase 1) for Developer
+
+Goal:
+
+Build a system that listens to new Pump.fun token launches.
+
+Apply user's custom filters (criteria they set).
+
+If a token meets the filter, list it to the user with full token data.
+
+NO auto-buy/sell yet — only monitor and alert.
+
+
+
+---
+
+1. User Filtering Options (via inline buttons)
+
+User can set:
+
+Market Cap (min, max)
+
+Liquidity (min, max)
+
+Time created (min, max in minutes)
+
+Developer holding % (min, max)
+
+Top holder % (min, max)
+
+Bundle % (min, max)
+
+Insiders % (min, max)
+
+Total Holders (min, max)
+
+5-min Volume (min, max)
+
+Social media presence (at least 1 account) (❌/✅ toggle)
+
+
+
+---
+
+2. Behavior
+
+Bot shows inline button menu for user to set these filters.
+
+Save user's input (store in context.user_data).
+
+After setting, when user clicks "➡️ Filter Now", bot starts monitoring tokens.
+
+
+
+---
+
+3. Monitoring & Matching
+
+Listen to Pump.fun launches (via API or WebSocket).
+
+
+Check if token meets the user's filtering criteria.
+
+If yes, send user token data in a nice message:
+
+Token Name
+
+CA (Contract Address)
+
+Market Cap
+
+Liquidity
+
+Dev holding
+
+Top holder
+
+Bundled %
+
+Insiders %
+
+Total holders
+
+Time created
+
+5M volume
+
+Socials (Telegram, X links)
+
+
+
+If not meeting filters, ignore.
+
+
+
+---
+
+4. Important:
+
+No auto-buy, no transaction for now.
+
+Only detect and send alerts.
+
+Fast scanning speed is important.
+
+Filters must work very accurately.
+
+
+
+---
+
+Example User Flow:
+
+1. User /start bot.
+
+
+2. User sets filter criteria using inline buttons.
+
+
+3. User clicks "Filter Now".
+
+
+4. Bot monitors live Pump.fun tokens.
+
+
+5. If token matches criteria → Bot sends a detailed message to the user.
+
+
+
+
+---
+
+Future Upgrades (after phase 1):
+
+Add auto-buy sniper function.
+
+Add manual buy/sell function.
+
+Add more sniper settings.
+
+
+
+---
+
+Important note:
+
+> We first need a clean, working, fast filtering system.
+Sniping will come later.
+Focus now = filters + real-time detection + reporting.
