@@ -1,11 +1,9 @@
 // bot/filters.js
-const userFilters = require("../data/users");
 const { User } = require("../models/userModel");
 
 module.exports = (bot) => {
   bot.onText(/\/start/, async (msg) => {
     const chatId = msg.chat.id;
-    userFilters.initUser(chatId);
 
     const userData = {
       telegram_id: msg.from.id,
@@ -61,7 +59,7 @@ Tap the buttons below to set your filters and begin scanning! 🔎
             },
           ],
           [{ text: "💰 Set Filters", callback_data: "open_filter_menu" }],
-          [{ text: "🚀 Search for Token", callback_data: "start_monitoring" }],
+          [{ text: "🚀 Search for Token", callback_data: "search_token" }],
           [
             { text: "👤 View My Info", callback_data: "view_info" },
             { text: "⚙️ Bot Settings", callback_data: "bot_status" },

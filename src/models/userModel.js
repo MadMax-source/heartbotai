@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   is_bot: { type: Boolean, default: false },
   language_code: { type: String },
   chat_id: { type: Number },
+  
 
   //referral schemas
   referred_by: { type: String, default: null },
