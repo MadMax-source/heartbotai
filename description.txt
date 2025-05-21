@@ -1,7 +1,3 @@
-Job Lawal, [5/17/2025 12:11 PM]
-The project details
-
-Tech🧑‍💻🐾, [5/17/2025 12:11 PM]
 HeartBot AI - Filtering System (Phase 1) for Developer
 
 Goal:
@@ -13,7 +9,7 @@ Apply user's custom filters (criteria they set).
 If a token meets the filter, list it to the user with full token data.
 
 NO auto-buy/sell yet — only monitor and alert.
-
+ 
 
 
 ---

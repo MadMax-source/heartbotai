@@ -17,7 +17,6 @@ module.exports = (bot) => {
       chat_id: chatId,
     };
 
-    // Check if user exists
     const existingUser = await User.findOne({ telegram_id: msg.from.id });
 
     if (!existingUser) {
@@ -62,7 +61,7 @@ Tap the buttons below to set your filters and begin scanning! 🔎
             },
           ],
           [{ text: "💰 Set Filters", callback_data: "open_filter_menu" }],
-          [{ text: "🚀 Start Monitoring", callback_data: "start_monitoring" }],
+          [{ text: "🚀 Search for Token", callback_data: "start_monitoring" }],
           [
             { text: "👤 View My Info", callback_data: "view_info" },
             { text: "⚙️ Bot Settings", callback_data: "bot_status" },

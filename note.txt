@@ -1,0 +1,90 @@
+Great question. Let's break this down.
+
+You're receiving **real-time token creation events** from the Pump.fun WebSocket, and you've proposed a robust set of filters. Now let's analyze **which fields are available directly** from the event data, and **which are not** (and would require external API calls or are not obtainable at all).
+
+---
+
+### ✅ **Info You Can Extract Directly from Pump.fun WebSocket**
+
+From this event:
+
+```json
+{
+  "signature": "...",
+  "mint": "...",
+  "traderPublicKey": "...",
+  "txType": "create",
+  "initialBuy": 35411.372207,
+  "solAmount": 0.000990099,
+  "bondingCurveKey": "...",
+  "vTokensInBondingCurve": 1072964588.627793,
+  "vSolInBondingCurve": 30.000990098999978,
+  "marketCapSol": 27.960838984787035,
+  "name": "Solana’s Step Bro",
+  "symbol": "Sexy sol",
+  "uri": "...",
+  "pool": "pump"
+}
+```
+
+You can derive the following:
+
+| Filter Option             | Status | Source / Calculation                                                          |
+| ------------------------- | ------ | ----------------------------------------------------------------------------- |
+| **Market Cap (min, max)** | ✅      | `marketCapSol` (in SOL)                                                       |
+| **Liquidity (min, max)**  | ✅      | `vSolInBondingCurve` is the current liquidity                                 |
+| **Time created**          | ✅      | You can timestamp it yourself when receiving the event                        |
+| **Developer holding %**   | ❌      | Not available in this payload                                                 |
+| **Top holder %**          | ❌      | Requires reading token holders (external call to Solana explorer or RPC node) |
+| **Bundle %**              | ❌      | Not in event data; unclear what "bundle %" means without further context      |
+| **Insiders %**            | ❌      | Requires historical tracking or off-chain analysis                            |
+| **Total Holders**         | ❌      | Requires external API (Solscan, Helius, or Solana RPC node)                   |
+| **5-min Volume**          | ❌      | Not available; requires tracking volume over time                             |
+| **Social media presence** | ❌      | Requires fetching and parsing metadata from the `uri`                         |
+
+---
+
+### 🟨 **Fields That Can Be Derived Indirectly**
+
+You **can** get the following info but will need **external API calls**:
+
+| Filter Option             | How to Get It                                                                      |
+| ------------------------- | ---------------------------------------------------------------------------------- |
+| **Developer holding %**   | Query top holders via Solana RPC (getTokenLargestAccounts)                         |
+| **Top holder %**          | Same as above                                                                      |
+| **Total Holders**         | Solana RPC call: `getTokenSupply` or third-party APIs like Solscan or Helius       |
+| **Social media presence** | Parse `uri` (likely points to a JSON metadata file that may include social links)  |
+| **5-min Volume**          | You'd need to store buy/sell events over time and calculate rolling volume         |
+| **Bundle % / Insiders %** | Requires definition—likely involves analyzing wallets connected to project creator |
+
+---
+
+### ❌ **Unavailable or Vague Fields**
+
+| Filter Option  | Why Unavailable                                                                |
+| -------------- | ------------------------------------------------------------------------------ |
+| **Bundle %**   | Not standard; unclear metric unless defined by Pump.fun                        |
+| **Insiders %** | No way to know which wallets are insiders unless predefined or manually tagged |
+
+---
+
+### ✅ Summary: Available vs Not Available
+
+#### Available Directly:
+
+* Market Cap
+* Liquidity
+* Time Created
+
+#### Indirectly Available (with API calls):
+
+* Developer Holding %
+* Top Holder %
+* Total Holders
+* Social Media Presence
+* 5-min Volume (via your own tracking)
+
+#### Not Available:
+
+* Bundle %
+* Insiders %
