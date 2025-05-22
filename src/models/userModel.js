@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String },
   },
   //referral schemas
+  /*
   referred_by: { type: String, default: null },
   referrals: { type: [String], default: [] },
   referralCount: { type: Number, default: 0 },
@@ -28,6 +29,7 @@ const userSchema = new mongoose.Schema({
   referralLink: {
     type: String,
   },
+  */
 });
 
 const User = mongoose.model("User", userSchema);
