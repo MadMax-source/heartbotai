@@ -62,7 +62,10 @@ Tap the buttons below to set your filters and begin scanning! 🔎
           [{ text: "🚀 Search for Token", callback_data: "search_token" }],
           [
             { text: "👤 View My Info", callback_data: "view_info" },
-            { text: "⚙️ Bot Settings", callback_data: "bot_status" },
+            {
+              text: "⚙️ Bot Settings (coming soon)",
+              callback_data: "bot_status",
+            },
           ],
           [
             {
