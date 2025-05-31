@@ -24,3 +24,8 @@ startNotifyUsersJob(bot);
 app.listen(process.env.PORT, () => {
   console.log(`🚀 Server running on port ${process.env.PORT}`);
 });
+
+
+/*
+this code initializes an Express server, connects to a MongoDB database, sets up a Telegram bot using the node-telegram-bot-api library, and starts various functionalities including handling incoming messages, notifying users, and managing pump socket connections. It uses environment variables for configuration and listens on a specified port.
+*/
