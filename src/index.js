@@ -7,7 +7,7 @@ const { startPumpSocket } = require("./bot/filter");
 const startHandler = require("./bot/start");
 const registerHandlers = require("./handlers");
 const startNotifyUsersJob = require("./jobs/notifyUsersJob");
-const updateNotifyJob = require("./jobs/notifyUsersJob");
+const startRealTimeUpdateNotification = require("./jobs/notifyUsersJob");
 
 connectDB();
 
@@ -22,6 +22,7 @@ startHandler(bot);
 registerHandlers(bot);
 startNotifyUsersJob(bot);
 updateNotifyJob(bot);
+startRealTimeUpdateNotification(bot);
 
 app.listen(process.env.PORT, () => {
   console.log(`🚀 Server running on port ${process.env.PORT}`);
