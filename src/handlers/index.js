@@ -2,8 +2,11 @@ const filterToken = require("./filteredToken");
 const filterMenu = require("./filterMenu");
 const botSettings = require("./botSettings");
 const searchTokenMenu = require("./searchToken");
+const realtimeTrigger = require("./real-time-triggers");
+const filter_by_value = require("./filter-by-value");
+const filteringTriggers = require("./filtering-trigger");
 const { Token } = require("../models/pumpToken");
-const { UserFilter } = require("../models/userFilter");
+const { UserFilter } = require("../models/userFilter"); 
 const { User } = require("../models/userModel");
 const bs58 = require("bs58");
 const { Keypair } = require("@solana/web3.js");
@@ -13,6 +16,22 @@ const userState = {};
 const userInputState = {};
 const importWalletState = {};
 module.exports = (bot) => {
+  bot.onText(/\/filteringTriggers/, async (msg) => {
+    const chatId = msg.chat.id;
+    const telegramId = msg.from.id;
+    filteringTriggers(bot, chatId, telegramId);
+  })
+  bot.onText(/\/realtimeTrigger/, async (msg) => {
+    const chatId = msg.chat.id;
+    const telegramId = msg.from.id;
+    realtimeTrigger(bot, chatId, telegramId);
+  })
+  bot.onText(/\/filterByValue/, async (msg) => {
+    const chatId = msg.chat.id;
+    const telegramId = msg.from.id;
+    filter_by_value(bot, chatId, telegramId);
+
+  })
   bot.onText(/\/setfilters/, (msg) => {
     const chatId = msg.chat.id;
     const telegramId = msg.from.id;
@@ -41,6 +60,31 @@ module.exports = (bot) => {
     const action = callbackQuery.data;
     const telegramId = callbackQuery.from.id;
 
+
+ if (action.startsWith("toggle_")) {
+      const field = action.replace("toggle_", "");
+      await filteringTriggers(bot, chatId, telegramId, field);
+      return bot.answerCallbackQuery(callbackQuery.id);
+    }
+
+    if (action.startsWith("toggle_realtime_")) {
+      const field = action.replace("toggle_realtime_", "");
+      await realtimeTrigger(bot, chatId, telegramId, field);
+      return bot.answerCallbackQuery(callbackQuery.id);
+    }
+
+  /*
+    if (action.startsWith("toggle_")) {
+    const field = action.replace("toggle_", "");
+    return filteringTriggers(bot, chatId, telegramId, field);
+  }
+
+  if (action.startsWith("toggle_realtime_")) {
+  const field = action.replace("toggle_realtime_", "");
+  return realtimeTrigger(bot, chatId, telegramId, field);
+  }
+  */
+
     const filterHandled = await filterMenu.handleFilterCallback(
       bot,
       callbackQuery,
@@ -49,6 +93,7 @@ module.exports = (bot) => {
     if (filterHandled) {
       return bot.answerCallbackQuery(callbackQuery.id);
     }
+    
 
     if (action === "view_filtered_tokens") {
       filterToken(bot, chatId, telegramId, 1);
@@ -128,7 +173,16 @@ module.exports = (bot) => {
       return bot.answerCallbackQuery(callbackQuery.id);
     } else if (action === "bot_settings") {
       botSettings(bot, chatId);
-    } else if (action === "search_token") {
+    } 
+    else if (action === "real_time_triggers") {
+      realtimeTrigger(bot, chatId, telegramId)
+    }
+    else if(action === "filtering_triggers") {
+      filteringTriggers(bot, chatId, telegramId);}
+      else if (action === "filter_by_value") {
+      filter_by_value(bot, chatId);}
+    else if (action === "filter"){}
+    else if (action === "search_token") {
       searchTokenMenu(bot, chatId);
     } else if (
       action === "search_by_name" ||
