@@ -21,7 +21,7 @@ startPumpSocket();
 startHandler(bot);
 registerHandlers(bot);
 startNotifyUsersJob(bot);
-updateNotifyJob(bot);
+//updateNotifyJob(bot);
 startRealTimeUpdateNotification(bot);
 
 app.listen(process.env.PORT, () => {
