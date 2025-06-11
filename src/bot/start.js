@@ -35,7 +35,7 @@ module.exports = (bot) => {
           whale: false,
           graduated: false,
         },
-        // real time triggers
+        // real t ime triggers
          dexPaid: false,
           devBoughtNow: false,
           graduatedNow: false,
@@ -80,7 +80,7 @@ Tap the buttons below to set your filters and begin scanning! 🔎
       reply_markup: {
         inline_keyboard: [
           
-          
+           
   [
     {
       text: "📊 View Filtered Tokens",
@@ -99,13 +99,7 @@ Tap the buttons below to set your filters and begin scanning! 🔎
       callback_data: "filter_by_value",
     },
   ],
-  [
-    {
-      text: "🔔 Real-Time Triggers",
-      callback_data: "real_time_triggers",
-    },
-  ],
-  [
+  [ 
     {
       text: "🔍 Search for Token",
       callback_data: "search_token",

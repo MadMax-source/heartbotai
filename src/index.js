@@ -15,8 +15,7 @@ const app = express();
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 app.use(express.json());
-app.use("/api", tokenRoutes);
-
+app.use("/api", tokenRoutes); 
 startPumpSocket();
 startHandler(bot);
 registerHandlers(bot);
