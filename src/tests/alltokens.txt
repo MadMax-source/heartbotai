@@ -1,0 +1,129 @@
+=============
+HOW TO ACCESS ALL THE INFORMATIONS
+=============
+
+
+
+
+
+Fetching the Solana token list is a good starting point for discovering all tokens, but it only provides basic metadata (name, symbol, address, etc.).
+It does not provide market cap, liquidity, holders, volume, or detailed analytics.
+
+Best Practice for Your Use Case
+To filter tokens by:
+
+Market Cap
+Liquidity
+Time Created
+Developer/Top Holder/Bundle/Insiders %
+Total Holders
+5-min Volume
+Social Media Presence
+You need to combine multiple data sources/APIs:
+
+1. Token List
+Get all tokens and their metadata (what you’re doing now).
+
+2. On-chain Data
+For holders, creation time, and distribution, use Solana RPC or indexers like Solscan, SolanaFM, or Helius.
+
+3. DEX APIs
+For liquidity and volume, use APIs from Orca, Raydium, Jupiter, etc.
+
+4. Market Data
+For market cap, use CoinGecko, CoinMarketCap, or Birdeye.
+
+5. Social Media
+
+
+Check the extensions field in the token list for social links, or use third-party APIs for deeper checks.
+
+Example: High-Level Workflow
+Fetch all tokens from the Solana token list.
+For each token:
+Query DEX APIs for liquidity/volume.
+Query indexers for holders, creation time, and distribution.
+Query market data APIs for market cap.
+Check social media links in metadata.
+Filter tokens based on your criteria.
+Is This Best Practice?
+Fetching the token list: Yes, as a first step.
+For analytics: You must aggregate data from multiple sources.
+Best practice: Use indexers and APIs to avoid heavy on-chain queries.
+Next Steps
+Decide which APIs/indexers you want to use for each metric.
+Write scripts to fetch and combine this data.
+Apply your filters.
+If you want, I can help you scaffold a script for one or more of these metrics. Let me know which metric you want to start with!
+
+
+
+
+
+
+==============
+    ALL TOKENS FETCHED
+==============
+
+
+
+
+
+
+
+const fetch = require('node-fetch');
+
+async function fetchSolanaTokens() {
+    const url = 'https://raw.githubusercontent.com/solana-labs/token-list/main/src/tokens/solana.tokenlist.json';
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    // The tokens are in data.tokens
+    return data.tokens;
+}
+
+fetchSolanaTokens()
+    .then(tokens => {
+        console.log(`Fetched ${tokens.length} tokens.`);
+        // Print first 5 tokens as a sample
+        console.log(tokens.slice(0, 5));
+    })
+    .catch(err => {
+        console.error('Error fetching tokens:', err);
+    });
+
+
+
+    =======
+    FETCH LIQ USING RAYDIUM 
+    =======
+
+
+
+    
+/*
+const fetch = require('node-fetch');
+
+async function fetchRaydiumLiquidity(tokenSymbol) {
+    const url = 'https://api.raydium.io/pairs';
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const pools = await response.json();
+
+    const matchingPools = pools.filter(pool =>
+        pool.name.toLowerCase().includes(tokenSymbol.toLowerCase())
+    );
+
+    return matchingPools.map(pool => ({
+        poolName: pool.name,
+        liquidity: pool.liquidity
+    }));
+}
+
+fetchRaydiumLiquidity('BONK')
+    .then(console.log)
+    .catch(console.error);
+
+*/

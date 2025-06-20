@@ -35,7 +35,6 @@ module.exports = (bot) => {
           whale: false,
           graduated: false,
         },
-        // real t ime triggers
          dexPaid: false,
           devBoughtNow: false,
           graduatedNow: false,

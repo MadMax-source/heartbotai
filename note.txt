@@ -7,7 +7,7 @@ You're receiving **real-time token creation events** from the Pump.fun WebSocket
 ### ✅ **Info You Can Extract Directly from Pump.fun WebSocket**
 
 From this event:
-
+ 
 ```json
 {
   "signature": "...",
