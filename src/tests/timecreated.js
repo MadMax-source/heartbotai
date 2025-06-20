@@ -25,5 +25,5 @@ async function getTokenCreationTime(mintAddress) {
 }
 
 // Example usage:
-const mintAddress = "8L8pDf3jutdpdr4m3np68CL9ZroLActrqwxi6s9Ah5xU"
+const mintAddress = "HGDcqWvB3T4YPp4K9aQkRJiYEvgZM7XuDo7SFPYg1g4r"
 getTokenCreationTime(mintAddress);

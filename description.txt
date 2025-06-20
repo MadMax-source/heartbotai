@@ -27,7 +27,7 @@ Time created (min, max in minutes)
 Developer holding % (min, max)
 
 Top holder % (min, max)
-
+ 
 Bundle % (min, max)
 
 Insiders % (min, max)
