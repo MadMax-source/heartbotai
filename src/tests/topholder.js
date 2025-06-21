@@ -3,7 +3,6 @@ const { getMint } = require('@solana/spl-token');
 
 const CUSTOM_RPC_URL = 'https://mainnet.helius-rpc.com/?api-key=77aae9b3-ad37-4523-8caf-dea409d5519e'; // Replace with your endpoint
 
-// Set your mint address here
 const mintAddress = '6HbQGGaXUkgxauW1HJNzHAuRAhKSXPzhhWcrAC7uJEpD';
 
 async function getTopHolder(mintAddress) {
@@ -16,7 +15,6 @@ async function getTopHolder(mintAddress) {
         return;
     }
 
-    // Get mint info for total supply and decimals
     const mintInfo = await getMint(connection, mintPubkey);
     const totalSupply = Number(mintInfo.supply) / (10 ** mintInfo.decimals);
 
