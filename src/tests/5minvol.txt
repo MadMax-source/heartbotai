@@ -1,0 +1,65 @@
+=============
+COINGECKO FOR ONLY 24
+=============
+
+
+const fetch = require('node-fetch');
+
+const coingeckoId = 'tether'; // Use the CoinGecko ID, not the mint address
+
+async function get24hVolume(coingeckoId) {
+    const url = `https://api.coingecko.com/api/v3/coins/${coingeckoId}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.log(`Error: HTTP ${response.status}`);
+            return;
+        }
+        const data = await response.json();
+        const volume = data.market_data?.total_volume?.usd;
+        if (volume !== undefined) {
+            console.log(`24h Volume: $${volume}`);
+        } else {
+            console.log('24h volume data not available for this token.');
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+
+get24hVolume(coingeckoId);
+
+
+===========
+jupiter network is down
+===========
+
+
+const fetch = require('node-fetch');
+
+const tokenMint = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
+
+async function getFiveMinVolume(tokenMint) {
+    const url = `https://stats.jup.ag/v1/market/${tokenMint}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.log(`Error: HTTP ${response.status}`);
+            return;
+        }
+        const data = await response.json();
+
+        if (data && data.volume_5m !== undefined) {
+            console.log(`5-min Volume: $${data.volume_5m}`);
+        } else {
+            console.log('5-min volume data not available for this token.');
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+
+
+getFiveMinVolume(tokenMint);

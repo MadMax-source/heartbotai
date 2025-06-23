@@ -24,7 +24,7 @@ Liquidity (min, max)
 
 Time created (min, max in minutes)
 
-Developer holding % (min, max)
+ Developer holding % (min, max)
 
 Top holder % (min, max)
  

@@ -1,7 +1,7 @@
 const { Connection, clusterApiUrl, PublicKey } = require('@solana/web3.js');
 
 // Set your SPL token mint address here
-const mintAddress = 'HGDcqWvB3T4YPp4K9aQkRJiYEvgZM7XuDo7SFPYg1g4r';
+const mintAddress = '2aXMYmyr712npFeyuQBp4LNeKB9u3FMpT7eWKFSN5k9e';
 
 async function getTokenCreatorAndBalance(mintAddress) {
     const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
