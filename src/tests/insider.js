@@ -2,8 +2,8 @@ const { Connection, PublicKey } = require('@solana/web3.js');
 const { getMint } = require('@solana/spl-token');
 
 const CUSTOM_RPC_URL = 'https://mainnet.helius-rpc.com/?api-key=77aae9b3-ad37-4523-8caf-dea409d5519e';
-const mintAddress = '9sFoqSut7UyCtxExnuDzNrmqFh9GfLNL8Ko59iD2jiZY'; // Replace with your token mint address
-
+const mintAddress = 'G6nZYEvhwFxxnp1KZr1v9igXtipuB5zL6oDGNMRZqF3q'; // Replace with your token mint address
+//G6nZYEvhwFxxnp1KZr1v9igXtipuB5zL6oDGNMRZqF3q
 async function getCreatorWalletAndBalance(mintAddress) {
     const connection = new Connection(CUSTOM_RPC_URL, 'confirmed');
     const mintPubkey = new PublicKey(mintAddress);
